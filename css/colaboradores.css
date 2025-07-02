@@ -1,0 +1,846 @@
+/* Estilos para el panel de colaboradores */
+
+/* Filtros de colaboradores */
+.collaborator-filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background-color: var(--light);
+  border: 1px solid var(--gray);
+  color: var(--dark);
+  padding: 0.5rem 1.25rem;
+  border-radius: 50px;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.filter-btn:hover {
+  background-color: rgba(67, 97, 238, 0.1);
+}
+
+.filter-btn.active {
+  background-color: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* Contenedor de colaboradores */
+.collaborators-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Tarjeta de colaborador */
+.collaborator-card {
+  background: linear-gradient(145deg, #2c3e50, #1a252f);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.collaborator-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    transparent,
+    rgba(76, 209, 255, 0.2),
+    transparent 30%
+  );
+  transform-origin: center;
+  animation: rotate 6s linear infinite;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.collaborator-card:hover::before {
+  opacity: 1;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.collaborator-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Colores para cada estado */
+.collaborator-card[data-status="disponible"] {
+  border-left: 3px solid #2ecc71; /* Verde */
+}
+
+.collaborator-card[data-status="ocupado"] {
+  border-left: 3px solid #f1c40f; /* Amarillo */
+}
+
+.collaborator-card[data-status="sobrecargado"] {
+  border-left: 3px solid #e74c3c; /* Rojo */
+}
+
+.collaborator-header {
+  padding: 0 0 1.5rem 0;
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.collaborator-avatar {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+}
+
+.collaborator-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.status-dot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.status-dot.available {
+  background-color: var(--success);
+}
+
+.status-dot.busy {
+  background-color: var(--warning);
+}
+
+.status-dot.overloaded {
+  background-color: var(--danger);
+}
+
+.collaborator-info {
+  flex: 1;
+}
+
+.collaborator-info h3 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.2rem;
+  color: #ffffff;
+  font-weight: 600;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+.collaborator-role {
+  font-size: 0.9rem;
+  color: #9cb3c9;
+  margin: 0 0 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.collaborator-role::before {
+  content: '•';
+  color: #7692ff;
+  font-size: 1.2em;
+  line-height: 1;
+}
+
+.collaborator-stats {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #9cb3c9;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.4rem 0.75rem;
+  border-radius: 50px;
+  transition: all 0.3s;
+}
+
+.stat:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.stat i {
+  margin-right: 0.5rem;
+  color: #7692ff;
+  font-size: 0.9em;
+}
+
+.collaborator-workload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.workload-chart {
+  width: 70px;
+  height: 70px;
+  position: relative;
+}
+
+.circular-chart {
+  width: 100%;
+  height: 100%;
+}
+
+.circle-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-width: 4;
+}
+
+.circle {
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: round;
+  animation: progress 1s ease-out forwards;
+}
+
+.collaborator-card[data-status="disponible"] .circle {
+  stroke: #2ecc71; /* Verde */
+}
+
+.collaborator-card[data-status="ocupado"] .circle {
+  stroke: #f1c40f; /* Amarillo */
+}
+
+.collaborator-card[data-status="sobrecargado"] .circle {
+  stroke: #e74c3c; /* Rojo */
+}
+
+.percentage {
+  fill: #ffffff;
+  font-size: 0.6em;
+  text-anchor: middle;
+  font-weight: 600;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.workload-label {
+  font-size: 0.75rem;
+  color: #9cb3c9;
+  margin-top: 0.5rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Efecto de brillo en el círculo */
+.workload-chart::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.collaborator-card:hover .workload-chart::after {
+  opacity: 1;
+}
+
+@keyframes progress {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
+
+.collaborator-body {
+  padding: 1.25rem 1.5rem;
+}
+
+.current-tasks h4 {
+  margin: 0 0 1.25rem 0;
+  font-size: 1rem;
+  color: #ffffff;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.current-tasks h4::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  background-color: #7692ff;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.task-item {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s;
+}
+
+.task-item:hover {
+  transform: translateX(5px);
+}
+
+.task-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.task-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.task-name {
+  font-weight: 500;
+  color: #ffffff;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70%;
+}
+
+.task-project {
+  font-size: 0.8rem;
+  color: #9cb3c9;
+  background: rgba(156, 179, 201, 0.1);
+  padding: 0.15rem 0.5rem;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.task-progress {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #7692ff, #4361ee);
+  transition: width 0.5s ease;
+  border-radius: 2px;
+}
+
+.progress-text {
+  font-size: 0.8rem;
+  color: #ffffff;
+  min-width: 35px;
+  text-align: right;
+  font-weight: 600;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Estado de las tareas */
+.task-item[data-status="completada"] .progress-fill {
+  background: linear-gradient(90deg, #2ecc71, #27ae60);
+}
+
+.task-item[data-status="en-progreso"] .progress-fill {
+  background: linear-gradient(90deg, #f1c40f, #f39c12);
+}
+
+.task-item[data-status="pendiente"] .progress-fill {
+  background: linear-gradient(90deg, #e74c3c, #c0392b);
+}
+
+.view-all-tasks {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-size: 0.85rem;
+  padding: 0;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.view-all-tasks i {
+  margin-left: 0.25rem;
+  font-size: 0.75rem;
+}
+
+.view-all-tasks:hover {
+  text-decoration: underline;
+}
+
+.collaborator-footer {
+  padding: 1rem 0 0 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1.25rem;
+}
+
+.action-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #9cb3c9;
+  transition: all 0.3s;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.action-btn:hover {
+  background: rgba(118, 146, 255, 0.2);
+  transform: translateY(-2px) scale(1.05);
+  color: #ffffff;
+  border-color: #7692ff;
+  box-shadow: 0 5px 15px rgba(118, 146, 255, 0.3);
+}
+
+.action-btn.view-profile:hover {
+  background: rgba(67, 97, 238, 0.2);
+  border-color: #4361ee;
+  color: #ffffff;
+  box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+  margin-bottom: 5px;
+}
+
+.view-profile:hover {
+  color: var(--dark);
+}
+
+.assign-task:hover {
+  color: var(--primary);
+}
+
+.send-message:hover {
+  color: var(--info);
+}
+
+.view-performance:hover {
+  color: var(--warning);
+}
+
+.action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Tabla de tareas en el modal */
+.all-tasks-list {
+  margin-top: 1.5rem;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.tasks-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+.tasks-table th,
+.tasks-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--gray);
+}
+
+.tasks-table th {
+  font-weight: 500;
+  color: var(--dark);
+  background-color: var(--light);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.tasks-table tr:last-child td {
+  border-bottom: none;
+}
+
+.tasks-table tr:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Estilos para los modales */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(247, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+}
+
+.modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: var(--radius);
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transform: translateY(-20px);
+  transition: transform 0.3s;
+}
+
+.modal.show .modal-content {
+  transform: translateY(0);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--gray);
+}
+
+.modal-header h2 {
+  font-size: 1.25rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.modal-header h2 i {
+  margin-right: 0.75rem;
+  color: var(--primary);
+}
+
+.close-modal {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: #6c757d;
+  cursor: pointer;
+}
+
+.close-modal:hover {
+  color: var(--danger);
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+/* Formulario */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--dark);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--gray);
+  border-radius: var(--radius);
+  font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+}
+
+.form-text {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+
+.form-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-row .form-group {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+/* Selector de prioridad */
+.priority-selector {
+  display: flex;
+  gap: 1rem;
+}
+
+.priority-option {
+  flex: 1;
+  cursor: pointer;
+}
+
+.priority-option input {
+  display: none;
+}
+
+.priority-badge {
+  display: block;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: var(--radius);
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.priority-badge.low {
+  background-color: rgba(56, 176, 0, 0.1);
+  color: var(--success);
+}
+
+.priority-badge.medium {
+  background-color: rgba(255, 183, 3, 0.1);
+  color: var(--warning);
+}
+
+.priority-badge.high {
+  background-color: rgba(220, 53, 69, 0.1);
+  color: var(--danger);
+}
+
+.priority-option input:checked + .priority-badge.low {
+  background-color: var(--success);
+  color: white;
+}
+
+.priority-option input:checked + .priority-badge.medium {
+  background-color: var(--warning);
+  color: white;
+}
+
+.priority-option input:checked + .priority-badge.high {
+  background-color: var(--danger);
+  color: white;
+}
+
+/* Botones de acción */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.btn-cancel {
+  background-color: var(--light);
+  color: var(--dark);
+  border: 1px solid var(--gray);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-cancel:hover {
+  background-color: var(--gray);
+}
+
+.btn-save {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.btn-save:hover {
+  background-color: var(--primary-dark);
+}
+
+.btn-save i {
+  margin-right: 0.5rem;
+}
+
+/* Mejoras para la visualización de tareas */
+.task-filters {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.task-filters .filter-btn {
+  font-size: 0.9rem;
+  padding: 0.4rem 1rem;
+}
+
+/* Modo oscuro */
+.dark-mode .collaborator-card {
+  background-color: #16213e;
+  color: white;
+}
+
+.dark-mode .collaborator-header,
+.dark-mode .collaborator-footer {
+  border-color: #0f3460;
+}
+
+.dark-mode .task-item {
+  background-color: #0f3460;
+}
+
+.dark-mode .task-project {
+  color: #e0e0e0;
+}
+
+.dark-mode .percentage {
+  fill: white;
+}
+
+.dark-mode .modal-content {
+  background-color: #16213e;
+  color: white;
+}
+
+.dark-mode .modal-header {
+  border-color: #0f3460;
+}
+
+.dark-mode .form-group label {
+  color: white;
+}
+
+.dark-mode .form-group input,
+.dark-mode .form-group textarea,
+.dark-mode .form-group select {
+  background-color: #0f3460;
+  border-color: #0f3460;
+  color: white;
+}
+
+.dark-mode .tasks-table {
+  background-color: #16213e;
+}
+
+.dark-mode .tasks-table th {
+  background-color: #0f3460;
+  color: white;
+}
+
+.dark-mode .tasks-table td {
+  border-color: #0f3460;
+}
+
+.dark-mode .btn-cancel {
+  background-color: #0f3460;
+  color: white;
+  border-color: #0f3460;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.collaborator-card {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.collaborator-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.collaborator-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.collaborator-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.collaborator-card:nth-child(4) {
+  animation-delay: 0.4s;
+}

@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Gestión - Colaboradores</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/colaboradores.css">
+</head>
+<body>
+  <div class="dashboard-layout">
+    <!-- Barra lateral -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <i class="fas fa-project-diagram"></i>
+        <h1>ProyectoApp</h1>
+      </div>
+      
+      <div class="user-profile">
+        <div class="avatar">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="user-info">
+          <h3>Juan Pérez</h3>
+          <p>Administrador</p>
+        </div>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <ul>
+          <li class="nav-item">
+            <a href="dashboard.html">
+              <i class="fas fa-home"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="proyectos.html">
+              <i class="fas fa-project-diagram"></i>
+              <span>Proyectos</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="tareas.html">
+              <i class="fas fa-tasks"></i>
+              <span>Tareas</span>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a href="colaboradores.html">
+              <i class="fas fa-users"></i>
+              <span>Colaboradores</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="reportes.html">
+              <i class="fas fa-chart-bar"></i>
+              <span>Reportes</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="configuracion.html">
+              <i class="fas fa-cog"></i>
+              <span>Configuración</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <a href="login.html" class="logout-btn">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Cerrar Sesión</span>
+        </a>
+      </div>
+    </aside>
+    
+    <!-- Contenido principal -->
+    <main class="main-content">
+      <header class="top-header">
+        <div class="search-bar">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Buscar colaboradores...">
+        </div>
+        
+        <div class="header-actions">
+          <button class="notification-btn">
+            <i class="fas fa-bell"></i>
+            <span class="badge">3</span>
+          </button>
+          <button class="message-btn">
+            <i class="fas fa-envelope"></i>
+            <span class="badge">5</span>
+          </button>
+        </div>
+      </header>
+      
+      <div class="dashboard-content">
+        <div class="page-header">
+          <h1>Panel de Colaboradores</h1>
+          <button class="new-collaborator-btn" id="openNewCollaboratorModal">
+            <i class="fas fa-user-plus"></i> Nuevo Colaborador
+          </button>
+        </div>
+        
+        <!-- Filtros de colaboradores -->
+        <div class="collaborator-filters">
+          <button class="filter-btn active" data-filter="todos">Todos</button>
+          <button class="filter-btn" data-filter="disponibles">Disponibles</button>
+          <button class="filter-btn" data-filter="ocupados">Ocupados</button>
+          <button class="filter-btn" data-filter="sobrecargados">Sobrecargados</button>
+        </div>
+        
+        <!-- Lista de colaboradores -->
+        <div class="collaborators-container">
+          <!-- Colaborador 1 -->
+          <div class="collaborator-card" data-status="disponible">
+            <div class="collaborator-header">
+              <div class="collaborator-avatar">
+                <img src="img/avatars/avatar-1.jpg" alt="Ana López">
+                <span class="status-dot available"></span>
+              </div>
+              <div class="collaborator-info">
+                <h3>Ana López</h3>
+                <p class="collaborator-role">Diseñadora UX/UI</p>
+                <div class="collaborator-stats">
+                  <div class="stat">
+                    <i class="fas fa-tasks"></i>
+                    <span>2 tareas asignadas</span>
+                  </div>
+                  <div class="stat">
+                    <i class="fas fa-chart-line"></i>
+                    <span>75% de avance promedio</span>
+                  </div>
+                </div>
+              </div>
+              <div class="collaborator-workload">
+                <div class="workload-chart">
+                  <svg viewBox="0 0 36 36" class="circular-chart">
+                    <path class="circle-bg" d="M18 2.0845
+                      a 15.9155 15.9155 0 0 1 0 31.831
+                      a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <path class="circle" stroke-dasharray="30, 100" d="M18 2.0845
+                      a 15.9155 15.9155 0 0 1 0 31.831
+                      a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <text x="18" y="20.35" class="percentage">30%</text>
+                  </svg>
+                </div>
+                <span class="workload-label">Carga de trabajo</span>
+              </div>
+            </div>
+            
+            <div class="collaborator-body">
+              <div class="current-tasks">
+                <h4>Tareas Actuales</h4>
+                <ul class="task-list">
+                  <li class="task-item">
+                    <div class="task-info">
+                      <span class="task-name">Diseño de interfaz de usuario</span>
+                      <span class="task-project">Sistema CRM</span>
+                    </div>
+                    <div class="task-progress">
+                      <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                      </div>
+                      <span class="progress-text">0%</span>
+                    </div>
+                  </li>
+                  <li class="task-item">
+                    <div class="task-info">
+                      <span class="task-name">Diseño de logo</span>
+                      <span class="task-project">E-commerce</span>
+                    </div>
+                    <div class="task-progress">
+                      <div class="progress-bar">
+                        <div class="progress-fill" style="width: 60%"></div>
+                      </div>
+                      <span class="progress-text">60%</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="collaborator-footer">
+              <button class="action-btn view-profile" data-tooltip="Ver perfil">
+                <i class="fas fa-user"></i>
+              </button>
+              <button class="action-btn assign-task" data-tooltip="Asignar tarea">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+              <button class="action-btn send-message" data-tooltip="Enviar mensaje">
+                <i class="fas fa-comment"></i>
+              </button>
+              <button class="action-btn view-performance" data-tooltip="Ver rendimiento">
+                <i class="fas fa-chart-bar"></i>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Colaborador 2 -->
+          <div class="collaborator-card" data-status="ocupado">
+            <div class="collaborator-header">
+              <div class="collaborator-avatar">
+                <img src="img/avatars/avatar-2.jpg" alt="Carlos Ruiz">
+                <span class="status-dot busy"></span>
+              </div>
+              <div class="collaborator-info">
+                <h3>Carlos Ruiz</h3>
+                <p class="collaborator-role">Desarrollador Backend</p>
+                <div class="collaborator-stats">
+                  <div class="stat">
+                    <i class="fas fa-tasks"></i>
+                    <span>4 tareas asignadas</span>
+                  </div>
+                  <div class="stat">
+                    <i class="fas fa-chart-line"></i>
+                    <span>60% de avance promedio</span>
+                  </div>
+                </div>
+              </div>
+              <div class="collaborator-workload">
+                <div class="workload-chart">
+                  <svg viewBox="0 0 36 36" class="circular-chart">
+                    <path class="circle-bg" d="M18 2.0845
+                      a 15.9155 15.9155 0 0 1 0 31.831
+                      a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <path class="circle" stroke-dasharray="70, 100" d="M18 2.0845
+                      a 15.9155 15.9155 0 0 1 0 31.831
+                      a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <text x="18" y="20.35" class="percentage">70%</text>
+                  </svg>
+                </div>
+                <span class="workload-label">Carga de trabajo</span>
+              </div>
+            </div>
+            
+            <div class="collaborator-body">
+              <div class="current-tasks">
+                <h4>Tareas Actuales</h4>
+                <ul class="task-list">
+                  <li class="task-item">
+                    <div class="task-info">
+                      <span class="task-name">Implementación de autenticación</span>
+                      <span class="task-project">App Delivery</span>
+                    </div>
+                    <div class="task-progress">
+                      <div class="progress-bar">
+                        <div class="progress-fill" style="width: 60%"></div>
+                      </div>
+                      <span class="progress-text">60%</span>
+                    </div>
+                  </li>
+                  <li class="task-item">
+                    <div class="task-info">
+                      <span class="task-name">Desarrollo de API REST</span>
+                      <span class="task-project">Sistema CRM</span>
+                    </div>
+                    <div class="task-progress">
+                      <div class="progress-bar">
+                        <div class="progress-fill" style="width: 40%"></div>
+                      </div>
+                      <span class="progress-text">40%</span>
+                    </div>
+                  </li>
+                </ul>
+                <button class="view-all-tasks">Ver todas las tareas <i class="fas fa-chevron-right"></i></button>
+              </div>
+            </div>
+            
+            <div class="collaborator-footer">
+              <button class="action-btn view-profile" data-tooltip="Ver perfil">
+                <i class="fas fa-user"></i>
+              </button>
+              <button class="action-btn assign-task" data-tooltip="Asignar tarea">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+              <button class="action-btn send-message" data-tooltip="Enviar mensaje">
+                <i class="fas fa-comment"></i>
+              </button>
+              <button class="action-btn view-performance" data-tooltip="Ver rendimiento">
+                <i class="fas fa-chart-bar"></i>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Colaborador 3 -->
+          <div class="collaborator-card" data-status="sobrecargado">
+            <div class="collaborator-header">
+              <div class="collaborator-avatar">
+                <img src="img/avatars/avatar-3.jpg" alt="María González">
+                <span class="status-dot overloaded"></span>
+              </div>
+              <div class="collaborator-info">
+                <h3>María González</h3>
+                <p class="collaborator-role">Diseñadora Gráfica</p>
+                <div class="collaborator-stats">
+                  <div class="stat">
+                    <i class="fas fa-tasks"></i>
+                    <span>6 tareas asignadas</span>
+                  </div>
+                  <div class="stat">
+                    <i class="fas fa-chart-line"></i>
+                    <span>45% de avance promedio</span>
+                  </div>
+                </div>
+              </div>
+              <div class="collaborator-workload">
+                <div class="workload-chart">
+                  <svg viewBox="0 0 36 36" class="circular-chart">
+                    <path class="circle-bg" d="M18 2.0845
+                      a 15.9155 15.9155 0 0 1 0 31.831
+                      a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <path class="circle" stroke-dasharray="90, 100" d="M18 2.0845
+                      a 15.9155 15.9155 0 0 1 0 31.831
+                      a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <text x="18" y="20.35" class="percentage">90%</text>
+                  </svg>
+                </div>
+                <span class="workload-label">Carga de trabajo</span>
+              </div>
+            </div>
+            
+            <div class="collaborator-body">
+              <div class="current-tasks">
+                <h4>Tareas Actuales</h4>
+                <ul class="task-list">
+                  <li class="task-item">
+                    <div class="task-info">
+                      <span class="task-name">Diseño de logo</span>
+                      <span class="task-project">E-commerce</span>
+                    </div>
+                    <div class="task-progress">
+                      <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%"></div>
+                      </div>
+                      <span class="progress-text">100%</span>
+                    </div>
+                  </li>
+                  <li class="task-item">
+                    <div class="task-info">
+                      <span class="task-name">Diseño de banners promocionales</span>
+                      <span class="task-project">E-commerce</span>
+                    </div>
+                    <div class="task-progress">
+                      <div class="progress-bar">
+                        <div class="progress-fill" style="width: 30%"></div>
+                      </div>
+                      <span class="progress-text">30%</span>
+                    </div>
+                  </li>
+                </ul>
+                <button class="view-all-tasks">Ver todas las tareas <i class="fas fa-chevron-right"></i></button>
+              </div>
+            </div>
+            
+            <div class="collaborator-footer">
+              <button class="action-btn view-profile" data-tooltip="Ver perfil">
+                <i class="fas fa-user"></i>
+              </button>
+              <button class="action-btn assign-task" data-tooltip="Asignar tarea" disabled>
+                <i class="fas fa-plus-circle"></i>
+              </button>
+              <button class="action-btn send-message" data-tooltip="Enviar mensaje">
+                <i class="fas fa-comment"></i>
+              </button>
+              <button class="action-btn view-performance" data-tooltip="Ver rendimiento">
+                <i class="fas fa-chart-bar"></i>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Colaborador 4 -->
+          <div class="collaborator-card" data-status="disponible">
+            <div class="collaborator-header">
+              <div class="collaborator-avatar">
+                <img src="img/avatars/avatar-4.jpg" alt="Pedro Sánchez">
+                <span class="status-dot available"></span>
+              </div>
+              <div class="collaborator-info">
+                <h3>Pedro Sánchez</h3>
+                <p class="collaborator-role">Desarrollador Frontend</p>
+                <div class="collaborator-stats">
+                  <div class="stat">
+                    <i class="fas fa-tasks"></i>
+                    <span>1 tarea asignada</span>
+                  </div>
+                  <div class="stat">
+                    <i class="fas fa-chart-line"></i>
+                    <span>0% de avance promedio</span>
+                  </div>
+                </div>
+              </div>
+              <div class="collaborator-workload">
+                <div class="workload-chart">
+                  <svg viewBox="0 0 36 36" class="circular-chart">
+                    <path class="circle-bg" d="M18 2.0845
+                      a 15.9155 15.9155 0 0 1 0 31.831
+                      a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <path class="circle" stroke-dasharray="20, 100" d="M18 2.0845
+                      a 15.9155 15.9155 0 0 1 0 31.831
+                      a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <text x="18" y="20.35" class="percentage">20%</text>
+                  </svg>
+                </div>
+                <span class="workload-label">Carga de trabajo</span>
+              </div>
+            </div>
+            
+            <div class="collaborator-body">
+              <div class="current-tasks">
+                <h4>Tareas Actuales</h4>
+                <ul class="task-list">
+                  <li class="task-item">
+                    <div class="task-info">
+                      <span class="task-name">Integración de pasarela de pagos</span>
+                      <span class="task-project">E-commerce</span>
+                    </div>
+                    <div class="task-progress">
+                      <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                      </div>
+                      <span class="progress-text">0%</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="collaborator-footer">
+              <button class="action-btn view-profile" data-tooltip="Ver perfil">
+                <i class="fas fa-user"></i>
+              </button>
+              <button class="action-btn assign-task" data-tooltip="Asignar tarea">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+              <button class="action-btn send-message" data-tooltip="Enviar mensaje">
+                <i class="fas fa-comment"></i>
+              </button>
+              <button class="action-btn view-performance" data-tooltip="Ver rendimiento">
+                <i class="fas fa-chart-bar"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <!-- Modal para asignar tarea -->
+  <div class="modal" id="assignTaskModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2><i class="fas fa-plus-circle"></i> Asignar Tarea a <span id="assigneeNamePlaceholder">Colaborador</span></h2>
+        <button class="close-modal" id="closeAssignModal">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="assignTaskForm">
+          <div class="form-group">
+            <label for="taskSelect">Seleccionar Tarea</label>
+            <select id="taskSelect" name="taskSelect" required>
+              <option value="">Seleccionar tarea</option>
+              <option value="1">Desarrollo de API REST</option>
+              <option value="2">Diseño de interfaz de usuario</option>
+              <option value="3">Implementación de autenticación</option>
+              <option value="4">Integración de pasarela de pagos</option>
+              <option value="5">Diseño de banners promocionales</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="taskPriority">Prioridad</label>
+            <div class="priority-selector">
+              <label class="priority-option">
+                <input type="radio" name="taskPriority" value="baja">
+                <span class="priority-badge low">Baja</span>
+              </label>
+              <label class="priority-option">
+                <input type="radio" name="taskPriority" value="media" checked>
+                <span class="priority-badge medium">Media</span>
+              </label>
+              <label class="priority-option">
+                <input type="radio" name="taskPriority" value="alta">
+                <span class="priority-badge high">Alta</span>
+              </label>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="deadlineDate">Fecha Límite</label>
+              <input type="date" id="deadlineDate" name="deadlineDate" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="estimatedTime">Tiempo Estimado (horas)</label>
+              <input type="number" id="estimatedTime" name="estimatedTime" min="1" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="assignmentNotes">Notas Adicionales</label>
+            <textarea id="assignmentNotes" name="assignmentNotes" rows="3"></textarea>
+          </div>
+          
+          <div class="form-actions">
+            <button type="button" class="btn-cancel" id="cancelAssignBtn">Cancelar</button>
+            <button type="submit" class="btn-save">
+              <i class="fas fa-save"></i> Asignar Tarea
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal para ver todas las tareas del colaborador -->
+  <div class="modal" id="allTasksModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2><i class="fas fa-tasks"></i> Tareas de <span id="collaboratorNamePlaceholder">Colaborador</span></h2>
+        <button class="close-modal" id="closeAllTasksModal">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="task-filters">
+          <button class="filter-btn active" data-filter="todas">Todas</button>
+          <button class="filter-btn" data-filter="pendiente">Pendientes</button>
+          <button class="filter-btn" data-filter="progreso">En Progreso</button>
+          <button class="filter-btn" data-filter="completada">Completadas</button>
+        </div>
+        
+        <div class="all-tasks-list">
+          <table class="tasks-table">
+            <thead>
+              <tr>
+                <th>Tarea</th>
+                <th>Proyecto</th>
+                <th>Fecha Límite</th>
+                <th>Estado</th>
+                <th>Progreso</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-status="pendiente">
+                <td>Diseño de interfaz de usuario</td>
+                <td>Sistema CRM</td>
+                <td>15/06/2023</td>
+                <td><span class="status-badge pending">Pendiente</span></td>
+                <td>
+                  <div class="progress-bar">
+                    <div class="progress-fill" style="width: 0%"></div>
+                  </div>
+                </td>
+                <td>
+                  <button class="action-btn edit-task" data-tooltip="Editar tarea">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="action-btn view-details" data-tooltip="Ver detalles">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr data-status="progreso">
+                <td>Diseño de logo</td>
+                <td>E-commerce</td>
+                <td>05/06/2023</td>
+                <td><span class="status-badge progress">En Progreso</span></td>
+                <td>
+                  <div class="progress-bar">
+                    <div class="progress-fill" style="width: 60%"></div>
+                  </div>
+                </td>
+                <td>
+                  <button class="action-btn edit-task" data-tooltip="Editar tarea">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="action-btn view-details" data-tooltip="Ver detalles">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr data-status="completada">
+                <td>Diseño de iconos</td>
+                <td>App Delivery</td>
+                <td>01/06/2023</td>
+                <td><span class="status-badge completed">Completada</span></td>
+                <td>
+                  <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%"></div>
+                  </div>
+                </td>
+                <td>
+                  <button class="action-btn edit-task" data-tooltip="Editar tarea">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="action-btn view-details" data-tooltip="Ver detalles">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal para añadir nuevo colaborador -->
+  <div class="modal" id="newCollaboratorModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2><i class="fas fa-user-plus"></i> Añadir Nuevo Colaborador</h2>
+        <button class="close-modal" id="closeNewCollaboratorModal">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="newCollaboratorForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">Nombre</label>
+              <input type="text" id="firstName" name="firstName" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="lastName">Apellido</label>
+              <input type="text" id="lastName" name="lastName" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Correo Electrónico</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="phone">Teléfono</label>
+              <input type="tel" id="phone" name="phone">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="role">Rol</label>
+            <select id="role" name="role" required>
+              <option value="">Seleccionar rol</option>
+              <option value="developer">Desarrollador</option>
+              <option value="designer">Diseñador</option>
+              <option value="project_manager">Gerente de Proyecto</option>
+              <option value="tester">Tester</option>
+              <option value="marketing">Marketing</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="department">Departamento</label>
+            <select id="department" name="department" required>
+              <option value="">Seleccionar departamento</option>
+              <option value="it">IT</option>
+              <option value="design">Diseño</option>
+              <option value="marketing">Marketing</option>
+              <option value="sales">Ventas</option>
+              <option value="hr">Recursos Humanos</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="skills">Habilidades</label>
+            <input type="text" id="skills" name="skills" placeholder="Ej: HTML, CSS, JavaScript, Photoshop">
+            <small class="form-text">Separar habilidades con comas</small>
+          </div>
+          
+          <div class="form-actions">
+            <button type="button" class="btn-cancel" id="cancelNewCollaboratorBtn">Cancelar</button>
+            <button type="submit" class="btn-save">
+              <i class="fas fa-save"></i> Guardar Colaborador
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Aquí iría el JavaScript para la funcionalidad
+    // Este código se implementaría en un archivo separado
+  </script>
+</body>
+</html>

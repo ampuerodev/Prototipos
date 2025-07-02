@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Gestión - Mensajería</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/mensajes.css">
+</head>
+<body>
+  <div class="dashboard-layout">
+    <!-- Barra lateral -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <i class="fas fa-project-diagram"></i>
+        <h1>ProyectoApp</h1>
+      </div>
+      
+      <div class="user-profile">
+        <div class="avatar">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="user-info">
+          <h3>Juan Pérez</h3>
+          <p>Administrador</p>
+        </div>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <ul>
+          <li class="nav-item">
+            <a href="dashboard.html">
+              <i class="fas fa-home"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="proyectos.html">
+              <i class="fas fa-project-diagram"></i>
+              <span>Proyectos</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="tareas.html">
+              <i class="fas fa-tasks"></i>
+              <span>Tareas</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="colaboradores.html">
+              <i class="fas fa-users"></i>
+              <span>Colaboradores</span>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a href="mensajes.html">
+              <i class="fas fa-comment-alt"></i>
+              <span>Mensajes</span>
+              <span class="notification-badge">3</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="configuracion.html">
+              <i class="fas fa-cog"></i>
+              <span>Configuración</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <a href="#" class="logout-btn">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Cerrar Sesión</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+      <header class="top-header">
+        <div class="search-bar">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Buscar conversaciones...">
+        </div>
+        <div class="header-actions">
+          <button class="notification-btn">
+            <i class="fas fa-bell"></i>
+            <span class="badge">3</span>
+          </button>
+          <button class="message-btn">
+            <i class="fas fa-envelope"></i>
+            <span class="badge">5</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+        <div class="messages-container">
+          <!-- Lista de conversaciones -->
+          <div class="conversation-list">
+            <div class="conversation-header">
+              <h2>Conversaciones</h2>
+              <button class="new-conversation-btn">
+                <i class="fas fa-plus"></i> Nueva
+              </button>
+            </div>
+            
+            <div class="conversation-search">
+              <i class="fas fa-search"></i>
+              <input type="text" placeholder="Buscar conversaciones...">
+            </div>
+            
+            <div class="conversation-items">
+              <!-- Conversación activa -->
+              <div class="conversation-item active">
+                <div class="conversation-avatar">
+                  <i class="fas fa-user"></i>
+                </div>
+                <div class="conversation-info">
+                  <div class="conversation-header">
+                    <h4>María González</h4>
+                    <span class="conversation-time">10:30 AM</span>
+                  </div>
+                  <p class="conversation-preview">Hola, ¿cómo va el proyecto?</p>
+                </div>
+                <span class="unread-badge">2</span>
+              </div>
+              
+              <!-- Otras conversaciones -->
+              <div class="conversation-item">
+                <div class="conversation-avatar">
+                  <i class="fas fa-user"></i>
+                </div>
+                <div class="conversation-info">
+                  <div class="conversation-header">
+                    <h4>Equipo de Desarrollo</h4>
+                    <span class="conversation-time">Ayer</span>
+                  </div>
+                  <p class="conversation-preview">Reunión mañana a las 10 AM</p>
+                </div>
+              </div>
+              
+              <div class="conversation-item">
+                <div class="conversation-avatar">
+                  <i class="fas fa-user"></i>
+                </div>
+                <div class="conversation-info">
+                  <div class="conversation-header">
+                    <h4>Carlos Ramírez</h4>
+                    <span class="conversation-time">Lun</span>
+                  </div>
+                  <p class="conversation-preview">Los archivos ya están listos</p>
+                </div>
+              </div>
+              
+              <div class="conversation-item">
+                <div class="conversation-avatar">
+                  <i class="fas fa-user"></i>
+                </div>
+                <div class="conversation-info">
+                  <div class="conversation-header">
+                    <h4>Ana Martínez</h4>
+                    <span class="conversation-time">Vie</span>
+                  </div>
+                  <p class="conversation-preview">Gracias por la actualización</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Área de chat -->
+          <div class="chat-area">
+            <div class="chat-header">
+              <div class="chat-user">
+                <div class="chat-avatar">
+                  <i class="fas fa-user"></i>
+                </div>
+                <div class="chat-user-info">
+                  <h3>María González</h3>
+                  <p class="user-status">En línea</p>
+                </div>
+              </div>
+              <div class="chat-actions">
+                <button class="chat-action-btn">
+                  <i class="fas fa-phone"></i>
+                </button>
+                <button class="chat-action-btn">
+                  <i class="fas fa-video"></i>
+                </button>
+                <button class="chat-action-btn">
+                  <i class="fas fa-ellipsis-v"></i>
+                </button>
+              </div>
+            </div>
+            
+            <div class="chat-messages">
+              <div class="message-date">
+                <span>HOY</span>
+              </div>
+              
+              <!-- Mensaje recibido -->
+              <div class="message received">
+                <div class="message-avatar">
+                  <i class="fas fa-user"></i>
+                </div>
+                <div class="message-content">
+                  <div class="message-text">
+                    Hola, ¿cómo estás? Necesito información sobre el proyecto que estamos desarrollando.
+                  </div>
+                  <div class="message-time">10:30 AM</div>
+                </div>
+              </div>
+              
+              <!-- Mensaje enviado -->
+              <div class="message sent">
+                <div class="message-content">
+                  <div class="message-text">
+                    ¡Hola María! Claro, ¿qué necesitas saber exactamente?
+                  </div>
+                  <div class="message-time">10:32 AM</div>
+                </div>
+              </div>
+              
+              <!-- Mensaje recibido -->
+              <div class="message received">
+                <div class="message-avatar">
+                  <i class="fas fa-user"></i>
+                </div>
+                <div class="message-content">
+                  <div class="message-text">
+                    Quería preguntarte si ya tienes listo el informe de avance para la reunión de mañana.
+                  </div>
+                  <div class="message-time">10:33 AM</div>
+                </div>
+              </div>
+              
+              <!-- Mensaje con archivo adjunto -->
+              <div class="message received">
+                <div class="message-avatar">
+                  <i class="fas fa-user"></i>
+                </div>
+                <div class="message-content">
+                  <div class="message-file">
+                    <div class="file-icon">
+                      <i class="far fa-file-pdf"></i>
+                    </div>
+                    <div class="file-info">
+                      <div class="file-name">Informe_Junio_2023.pdf</div>
+                      <div class="file-size">2.4 MB</div>
+                    </div>
+                    <a href="#" class="file-download">
+                      <i class="fas fa-download"></i>
+                    </a>
+                  </div>
+                  <div class="message-time">10:34 AM</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="chat-input">
+              <button class="attachment-btn">
+                <i class="fas fa-paperclip"></i>
+              </button>
+              <div class="message-input">
+                <input type="text" placeholder="Escribe un mensaje...">
+                <button class="emoji-btn">
+                  <i class="far fa-smile"></i>
+                </button>
+              </div>
+              <button class="send-btn">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Panel de información del chat -->
+          <div class="chat-info-panel">
+            <div class="panel-header">
+              <h3>Información del chat</h3>
+              <button class="panel-close">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+            
+            <div class="panel-section">
+              <div class="panel-user">
+                <div class="panel-avatar">
+                  <i class="fas fa-user"></i>
+                </div>
+                <div class="panel-user-info">
+                  <h4>María González</h4>
+                  <p>Gerente de Proyectos</p>
+                  <span class="user-status online">En línea</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="panel-section">
+              <h4>Archivos compartidos</h4>
+              <div class="shared-files">
+                <div class="shared-file">
+                  <div class="file-icon">
+                    <i class="far fa-file-pdf"></i>
+                  </div>
+                  <div class="file-details">
+                    <div class="file-name">Informe_Junio_2023.pdf</div>
+                    <div class="file-meta">2.4 MB • Hoy 10:34 AM</div>
+                  </div>
+                  <a href="#" class="file-action">
+                    <i class="fas fa-download"></i>
+                  </a>
+                </div>
+                
+                <div class="shared-file">
+                  <div class="file-icon">
+                    <i class="far fa-file-word"></i>
+                  </div>
+                  <div class="file-details">
+                    <div class="file-name">Requisitos.docx</div>
+                    <div class="file-meta">1.1 MB • Ayer 4:22 PM</div>
+                  </div>
+                  <a href="#" class="file-action">
+                    <i class="fas fa-download"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="panel-section">
+              <h4>Opciones</h4>
+              <ul class="panel-options">
+                <li>
+                  <a href="#">
+                    <i class="fas fa-bell"></i>
+                    Notificaciones
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="fas fa-search"></i>
+                    Buscar en la conversación
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="text-danger">
+                    <i class="fas fa-trash-alt"></i>
+                    Eliminar conversación
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/mensajes.js"></script>
+</body>
+</html>

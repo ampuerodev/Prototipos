@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Gestión - Recuperar Contraseña</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/recover.css">
+</head>
+<body>
+  <div class="recover-container">
+    <div class="recover-card">
+      <div class="recover-header">
+        <!-- Replace with your logo or remove this line -->
+        <i class="fas fa-key fa-3x" style="color: var(--primary); margin-bottom: 1rem;"></i>
+        <h1>Recuperar Contraseña</h1>
+      </div>
+      
+      <form id="recoverForm" class="recover-form">
+        <div class="form-info">
+          <i class="fas fa-info-circle"></i>
+          <p>Ingrese su correo electrónico y le enviaremos instrucciones para restablecer su contraseña.</p>
+        </div>
+        
+        <div class="form-group">
+          <label for="email"><i class="fas fa-envelope"></i> Correo Electrónico</label>
+          <input type="email" id="email" name="email" placeholder="Ingrese su correo electrónico" required>
+        </div>
+        
+        <div class="form-group">
+          <button type="submit" class="btn-recover">
+            <i class="fas fa-paper-plane"></i> Enviar Instrucciones
+          </button>
+        </div>
+        
+        <div class="form-links text-center">
+          <p><a href="login.html"><i class="fas fa-arrow-left"></i> Volver al login</a></p>
+        </div>
+      </form>
+      
+      <div class="recover-footer">
+        <p>© 2023 Sistema de Gestión. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('recoverForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('email').value;
+      
+      // Simulación de envío de correo
+      alert(`Se han enviado instrucciones de recuperación a: ${email}`);
+      window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>

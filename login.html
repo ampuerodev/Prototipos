@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Gestión - Login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-card">
+      <div class="login-header">
+        <i class="fas fa-user-shield fa-3x" style="color: var(--primary); margin-bottom: 1rem;"></i>
+        <h1>Sistema de Gestión</h1>
+      </div>
+      
+      <form id="loginForm" class="login-form">
+        <div class="form-group">
+          <label for="username"><i class="fas fa-user"></i> Usuario</label>
+          <input type="text" id="username" name="username" placeholder="Ingrese su usuario" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="password"><i class="fas fa-lock"></i> Contraseña</label>
+          <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" required>
+          <span class="password-toggle" onclick="togglePassword()">
+            <i class="fas fa-eye"></i>
+          </span>
+        </div>
+        
+        <div class="form-group remember-me">
+          <input type="checkbox" id="remember" name="remember">
+          <label for="remember">Recordarme</label>
+        </div>
+        
+        <div class="form-group">
+          <button type="submit" class="btn-login">
+            <i class="fas fa-sign-in-alt"></i> Ingresar
+          </button>
+        </div>
+        
+        <div class="form-links">
+          <a href="register.html" class="register-link">Crear cuenta nueva</a>
+          <a href="recover.html" class="forgot-link">¿Olvidó su contraseña?</a>
+        </div>
+      </form>
+      
+      <div class="login-footer">
+        <p>© 2023 Sistema de Gestión. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function togglePassword() {
+      const passwordInput = document.getElementById('password');
+      const icon = document.querySelector('.password-toggle i');
+      
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+      } else {
+        passwordInput.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+      }
+    }
+    
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      
+      // Simulación de validación de roles
+      if (username === 'admin' && password === 'admin') {
+        window.location.href = 'dashboard-admin.html';
+      } else if (username === 'jefe' && password === 'jefe') {
+        window.location.href = 'dashboard-jefe.html';
+      } else if (username === 'colaborador' && password === 'colaborador') {
+        window.location.href = 'dashboard-colaborador.html';
+      } else {
+        alert('Usuario o contraseña incorrectos');
+      }
+    });
+  </script>
+</body>
+</html>

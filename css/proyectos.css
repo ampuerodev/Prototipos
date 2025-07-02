@@ -1,0 +1,1047 @@
+/* Filtros de proyectos */
+.filters-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 0.75rem;
+  border-radius: 50px;
+  width: max-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.filter-btn {
+  background-color: transparent;
+  color: var(--text-secondary);
+  padding: 0.6rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.filter-btn:hover {
+  color: var(--text-primary);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.filter-btn.active {
+  background-color: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+  box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.5);
+}
+
+/* Vista de Proyectos en Tarjetas */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.project-card {
+  background: linear-gradient(145deg, #2c3e50, #1a252f);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    transparent,
+    rgba(76, 209, 255, 0.2),
+    transparent 30%
+  );
+  transform-origin: center;
+  animation: rotate 6s linear infinite;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.project-card:hover::before {
+  opacity: 1;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Project card status styles have been removed */
+
+.project-card .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.project-card .project-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.project-card .project-title h4 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #ffffff;
+  font-weight: 600;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+.project-card .project-icon {
+    font-size: 1.25rem;
+    color: #7692ff;
+    text-shadow: 0 0 8px rgba(118, 146, 255, 0.7);
+}
+
+.project-card .card-actions {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.project-card .action-btn {
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #f1f1f1;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.project-card .action-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(118, 146, 255, 0.5);
+}
+
+.project-card .project-client {
+    font-size: 0.9rem;
+    color: #9cb3c9;
+    margin: 0;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.project-card .project-dates {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #9cb3c9;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.project-card .date-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.project-card .project-footer {
+  margin-top: auto; /* Pushes footer to the bottom */
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.project-card .project-progress {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 60%;
+}
+
+.project-card .progress-bar {
+  flex-grow: 1;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.project-card .progress {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.5s ease-in-out;
+}
+
+.project-card .progress-text {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #9cb3c9;
+  min-width: 40px;
+  text-align: right;
+}
+
+.project-card .status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para cada estado */
+.project-card .status-badge.active {
+  background-color: #2ecc71; /* Verde para activo */
+  color: #fff;
+}
+
+.project-card .status-badge.progress {
+  background-color: #f1c40f; /* Amarillo para en progreso */
+  color: #000;
+}
+
+.project-card .status-badge.completed {
+  background-color: #e74c3c; /* Rojo para completado */
+  color: #fff;
+}
+
+/* Colores para las barras de progreso según el estado */
+.project-card[data-status="activo"] .progress {
+  background-color: #2ecc71; /* Verde */
+}
+
+.project-card[data-status="progreso"] .progress {
+  background-color: #f1c40f; /* Amarillo */
+}
+
+.project-card[data-status="completado"] .progress {
+  background-color: #e74c3c; /* Rojo */
+}
+
+/* Modal para crear proyecto - Tech Redesign */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 15, 20, 0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s, visibility 0.4s;
+}
+
+.modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: linear-gradient(145deg, #2c3e50, #1a252f);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius);
+  width: 90%;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+  transform: scale(0.95);
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.modal.show .modal-content {
+  transform: scale(1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header h2 {
+  font-size: 1.4rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  color: #f1f1f1;
+  font-weight: 600;
+}
+
+.modal-header h2 i {
+  margin-right: 0.75rem;
+  color: #7692ff;
+  text-shadow: 0 0 8px rgba(118, 146, 255, 0.7);
+}
+
+.close-modal {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1rem;
+  color: #f1f1f1;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.close-modal:hover {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 10px rgba(255, 82, 82, 0.5);
+  color: #ff5252;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+/* Override common.css for dark modal inputs */
+.modal-body .form-group label {
+  color: #bdc3c7;
+  font-weight: 500;
+}
+
+.modal-body input,
+.modal-body textarea {
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f1f1f1;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+}
+
+.modal-body input:focus,
+.modal-body textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 12px rgba(67, 97, 238, 0.5);
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.description-wrapper {
+  position: relative;
+}
+
+.ai-suggest-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: #7692ff;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.ai-suggest-btn:hover {
+  background-color: rgba(118, 146, 255, 0.1);
+  text-shadow: 0 0 8px rgba(118, 146, 255, 0.7);
+}
+
+.ai-suggestion {
+  display: none;
+  align-items: flex-start;
+  background-color: rgba(118, 146, 255, 0.1);
+  border: 1px solid rgba(118, 146, 255, 0.2);
+  padding: 0.75rem;
+  border-radius: var(--radius);
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #e0e0e0;
+}
+
+.tags-input-container {
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tags-input-container input {
+  background: transparent;
+  border: none;
+  padding: 0.3rem;
+  flex: 1;
+  min-width: 120px;
+}
+
+.tags-input-container input:focus {
+  box-shadow: none;
+}
+
+.tag {
+  background-color: var(--primary);
+  color: white;
+  padding: 0.3rem 0.7rem;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.remove-tag {
+  background: none;
+  border: none;
+  color: white;
+  opacity: 0.7;
+  font-size: 0.8rem;
+}
+.remove-tag:hover {
+  opacity: 1;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Estilos para el botón de nuevo proyecto */
+.btn-new-project {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 0.6rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(var(--primary-rgb), 0.3);
+}
+
+.btn-new-project:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(var(--primary-rgb), 0.4);
+}
+
+/* Estilos para el modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  overflow: hidden;
+}
+
+.modal.show {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-content {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow: hidden;
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.7);
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal.show .modal-content {
+  transform: translateY(0);
+}
+
+.modal-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.close-modal {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.2s;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.close-modal:hover {
+  color: var(--text-primary);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+/* Estilos para formularios */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.input-with-ai {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-with-ai input,
+.input-with-ai textarea,
+.input-with-ai select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.input-with-ai input:focus,
+.input-with-ai textarea:focus,
+.input-with-ai select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(var(--primary-rgb), 0.2);
+  outline: none;
+}
+
+.ai-suggest-btn {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color 0.2s;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.ai-suggest-btn:hover {
+  color: var(--primary);
+  background-color: rgba(var(--primary-rgb), 0.1);
+}
+
+/* Estilos para las etiquetas de tecnologías */
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.tag {
+  background-color: rgba(var(--primary-rgb), 0.15);
+  color: var(--primary);
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tag button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+}
+
+/* Sugerencias de IA */
+.ai-suggestion {
+  background-color: rgba(76, 209, 255, 0.1);
+  border-left: 3px solid var(--primary);
+  padding: 0.75rem;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.ai-suggestion i {
+  color: var(--primary);
+  margin-top: 2px;
+}
+
+/* Filas de formulario */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Botones del formulario */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.3);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+}
+
+/* Input con prefijo para moneda */
+.input-with-prefix {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-prefix {
+  position: absolute;
+  left: 12px;
+  color: var(--text-secondary);
+  pointer-events: none;
+}
+
+.input-with-prefix input {
+  padding-left: 28px !important;
+}
+
+/* Estilos para el textarea */
+textarea {
+  min-height: 100px;
+  resize: vertical;
+  line-height: 1.5;
+  font-family: inherit;
+}
+
+/* Estilos para el select */
+/* Botón de Sugerencia IA */
+.btn-ai-suggest {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #4a6bff, #6a11cb);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(106, 17, 203, 0.3);
+  margin-bottom: 1.5rem;
+}
+
+.btn-ai-suggest i {
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+.btn-ai-suggest:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(106, 17, 203, 0.4);
+  background: linear-gradient(135deg, #6a11cb, #4a6bff);
+}
+
+.btn-ai-suggest:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(106, 17, 203, 0.3);
+}
+
+/* Animación de carga para el botón */
+.btn-ai-suggest.loading i {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1em;
+  padding-right: 2.5rem !important;
+  cursor: pointer;
+}
+
+/* Estilos para el tooltip */
+[data-tooltip] {
+  position: relative;
+  cursor: help;
+}
+
+[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #1f2937;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  z-index: 1000;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+[data-tooltip]:hover::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% - 5px);
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px 5px 0;
+  border-style: solid;
+  border-color: #1f2937 transparent transparent;
+  z-index: 1001;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+[data-tooltip]:hover::after,
+[data-tooltip]:hover::before {
+  opacity: 1;
+}
+
+.btn-cancel {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #f1f1f1;
+  padding: 0.75rem 1.5rem;
+}
+
+.btn-cancel:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.btn-save {
+  background-color: var(--primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  box-shadow: 0 0 12px rgba(67, 97, 238, 0.5);
+}
+
+.btn-save:hover {
+  background-color: var(--primary-dark);
+  box-shadow: 0 0 16px rgba(67, 97, 238, 0.8);
+}
+
+.ai-suggestion i {
+  color: var(--primary);
+  margin-right: 0.75rem;
+  margin-top: 0.2rem;
+}
+
+.ai-suggestion p {
+  margin: 0;
+}
+
+.btn-save i {
+  margin-right: 0.5rem;
+}
+
+/* Estilos movidos desde el HTML */
+.ai-suggestion {
+  display: none;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-top: 0.75rem;
+  padding: 1rem;
+  background: rgba(var(--primary-rgb), 0.1);
+  border-radius: var(--radius);
+  border-left: 4px solid var(--primary);
+}
+
+.ai-suggestion i {
+  font-size: 1.5rem;
+  color: var(--primary);
+  margin-top: 0.2rem;
+}
+
+.ai-suggestion p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.tech-suggestions {
+  display: none;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.75rem;
+  padding: 1rem;
+  background: rgba(var(--warning-rgb), 0.1);
+  border-radius: var(--radius);
+  border-left: 4px solid var(--warning);
+}
+
+.tech-suggestions i {
+  font-size: 1.5rem;
+  color: var(--warning);
+}
+
+.tech-suggestions p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.tags-input-container .tag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(var(--primary-rgb), 0.2);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: var(--primary);
+}
+
+.tags-input-container .remove-tag {
+  background: none;
+  border: none;
+  color: var(--primary);
+  opacity: 0.7;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.tags-input-container .remove-tag:hover {
+  opacity: 1;
+}
+
+/* Estilos para tooltips mejorados */
+.custom-tooltip {
+  position: fixed;
+  background: #2c3e50;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  z-index: 10000;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.custom-tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  background: inherit;
+  clip-path: polygon(0 0, 100% 0, 50% 50%);
+}
+
+.custom-tooltip i {
+  font-size: 1rem;
+}
+
+/* Tipos de tooltips */
+.custom-tooltip.info {
+  background: #3498db;
+  border-left: 4px solid #2980b9;
+}
+
+.custom-tooltip.success {
+  background: #2ecc71;
+  border-left: 4px solid #27ae60;
+}
+
+.custom-tooltip.error {
+  background: #e74c3c;
+  border-left: 4px solid #c0392b;
+}
+
+/* Mostrar tooltip */
+.custom-tooltip.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animación de desvanecimiento para cerrar */
+.custom-tooltip.fade-out {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .project-filters {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .filter-btn {
+    width: 100%;
+  }
+  
+  .modal-content {
+    width: 95%;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .btn-cancel, .btn-save {
+    width: 100%;
+  }
+}

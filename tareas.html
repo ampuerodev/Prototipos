@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Gestión - Tareas</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/tareas.css">
+</head>
+<body>
+  <div class="dashboard-layout">
+    <!-- Barra lateral -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <i class="fas fa-project-diagram"></i>
+        <h1>ProyectoApp</h1>
+      </div>
+      
+      <div class="user-profile">
+        <div class="avatar">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="user-info">
+          <h3>Juan Pérez</h3>
+          <p>Administrador</p>
+        </div>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <ul>
+          <li class="nav-item">
+            <a href="dashboard.html">
+              <i class="fas fa-home"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="proyectos.html">
+              <i class="fas fa-project-diagram"></i>
+              <span>Proyectos</span>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a href="tareas.html">
+              <i class="fas fa-tasks"></i>
+              <span>Tareas</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="colaboradores.html">
+              <i class="fas fa-users"></i>
+              <span>Colaboradores</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="reportes.html">
+              <i class="fas fa-chart-bar"></i>
+              <span>Reportes</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="configuracion.html">
+              <i class="fas fa-cog"></i>
+              <span>Configuración</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <a href="login.html" class="logout-btn">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Cerrar Sesión</span>
+        </a>
+      </div>
+    </aside>
+    
+    <!-- Contenido principal -->
+    <main class="main-content">
+      <header class="top-header">
+        <div class="search-bar">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Buscar tareas...">
+        </div>
+        
+        <div class="header-actions">
+          <button class="notification-btn">
+            <i class="fas fa-bell"></i>
+            <span class="badge">3</span>
+          </button>
+          <button class="message-btn">
+            <i class="fas fa-envelope"></i>
+            <span class="badge">5</span>
+          </button>
+        </div>
+      </header>
+      
+      <div class="dashboard-content">
+        <div class="page-header">
+          <h1>Gestión de Tareas</h1>
+          <button class="new-task-btn" id="openNewTaskModal">
+            <i class="fas fa-plus"></i> Nueva Tarea
+          </button>
+        </div>
+        
+        <!-- Filtros de tareas -->
+        <div class="task-filters">
+          <button class="filter-btn active" data-filter="todas">Todas</button>
+          <button class="filter-btn" data-filter="pendiente">Pendientes</button>
+          <button class="filter-btn" data-filter="progreso">En Progreso</button>
+          <button class="filter-btn" data-filter="completada">Completadas</button>
+        </div>
+        
+        <!-- Lista de tareas -->
+        <div class="tasks-container">
+          <!-- Tarea pendiente -->
+          <div class="task-card" data-status="pendiente">
+            <!-- Nuevo indicador de estado -->
+            <div class="task-status-indicator">Pendiente</div>
+            
+            <div class="task-header">
+              <div class="task-title">
+                <h3>Diseño de interfaz de usuario</h3>
+                <span class="task-project">Proyecto: Sistema CRM</span>
+              </div>
+              <div class="task-status">
+                <span class="status-badge pending">Pendiente</span>
+              </div>
+            </div>
+            
+            <div class="task-body">
+              <p class="task-description">Crear wireframes y mockups para la interfaz de usuario del sistema CRM.</p>
+              
+              <div class="task-meta">
+                <div class="task-assignee">
+                  <i class="fas fa-user-circle"></i>
+                  <span>Ana López</span>
+                </div>
+                <div class="task-deadline">
+                  <i class="fas fa-calendar-alt"></i>
+                  <span>15/06/2023</span>
+                </div>
+                <div class="task-time">
+                  <i class="fas fa-clock"></i>
+                  <span>Estimado: 20 horas</span>
+                </div>
+              </div>
+              
+              <div class="task-progress">
+                <div class="progress-info">
+                  <span>Progreso</span>
+                  <span>0%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 0%"></div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="task-footer">
+              <div class="task-actions">
+                <button class="action-btn edit-task" data-tooltip="Editar tarea">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button class="action-btn update-status" data-tooltip="Actualizar estado">
+                  <i class="fas fa-sync-alt"></i>
+                </button>
+                <button class="action-btn delete-task" data-tooltip="Eliminar tarea">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Tarea en progreso -->
+          <div class="task-card" data-status="progreso">
+            <!-- Nuevo indicador de estado -->
+            <div class="task-status-indicator">En Progreso</div>
+            
+            <div class="task-header">
+              <div class="task-title">
+                <h3>Implementación de autenticación</h3>
+                <span class="task-project">Proyecto: App Delivery</span>
+              </div>
+              <div class="task-status">
+                <span class="status-badge progress">En Progreso</span>
+              </div>
+            </div>
+            
+            <div class="task-body">
+              <p class="task-description">Implementar sistema de autenticación con JWT y roles de usuario.</p>
+              
+              <div class="task-meta">
+                <div class="task-assignee">
+                  <i class="fas fa-user-circle"></i>
+                  <span>Carlos Ruiz</span>
+                </div>
+                <div class="task-deadline">
+                  <i class="fas fa-calendar-alt"></i>
+                  <span>20/06/2023</span>
+                </div>
+                <div class="task-time">
+                  <i class="fas fa-clock"></i>
+                  <span>Estimado: 15 horas</span>
+                </div>
+              </div>
+              
+              <div class="task-progress">
+                <div class="progress-info">
+                  <span>Progreso</span>
+                  <span>60%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 60%"></div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="task-footer">
+              <div class="task-actions">
+                <button class="action-btn edit-task" data-tooltip="Editar tarea">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button class="action-btn update-status" data-tooltip="Actualizar estado">
+                  <i class="fas fa-sync-alt"></i>
+                </button>
+                <button class="action-btn delete-task" data-tooltip="Eliminar tarea">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Tarea completada -->
+          <div class="task-card" data-status="completada">
+            <!-- Nuevo indicador de estado -->
+            <div class="task-status-indicator">Completada</div>
+            
+            <div class="task-header">
+              <div class="task-title">
+                <h3>Diseño de logo</h3>
+                <span class="task-project">Proyecto: E-commerce</span>
+              </div>
+              <div class="task-status">
+                <span class="status-badge completed">Completada</span>
+              </div>
+            </div>
+            
+            <div class="task-body">
+              <p class="task-description">Crear logo y elementos de identidad visual para la tienda en línea.</p>
+              
+              <div class="task-meta">
+                <div class="task-assignee">
+                  <i class="fas fa-user-circle"></i>
+                  <span>María González</span>
+                </div>
+                <div class="task-deadline">
+                  <i class="fas fa-calendar-alt"></i>
+                  <span>05/06/2023</span>
+                </div>
+                <div class="task-time">
+                  <i class="fas fa-clock"></i>
+                  <span>Estimado: 10 horas</span>
+                </div>
+              </div>
+              
+              <div class="task-progress">
+                <div class="progress-info">
+                  <span>Progreso</span>
+                  <span>100%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 100%"></div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="task-footer">
+              <div class="task-actions">
+                <button class="action-btn edit-task" data-tooltip="Editar tarea">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button class="action-btn update-status" data-tooltip="Actualizar estado">
+                  <i class="fas fa-sync-alt"></i>
+                </button>
+                <button class="action-btn delete-task" data-tooltip="Eliminar tarea">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Tarea pendiente con fecha próxima -->
+          <div class="task-card urgent" data-status="pendiente">
+            <!-- Nuevo indicador de estado -->
+            <div class="task-status-indicator">Pendiente</div>
+            
+            <div class="task-header">
+              <div class="task-title">
+                <h3>Integración de pasarela de pagos</h3>
+                <span class="task-project">Proyecto: E-commerce</span>
+              </div>
+              <div class="task-status">
+                <span class="status-badge pending">Pendiente</span>
+              </div>
+            </div>
+            
+            <div class="task-body">
+              <p class="task-description">Integrar pasarela de pagos con Stripe y PayPal para la tienda en línea.</p>
+              
+              <div class="task-meta">
+                <div class="task-assignee">
+                  <i class="fas fa-user-circle"></i>
+                  <span>Pedro Sánchez</span>
+                </div>
+                <div class="task-deadline urgent">
+                  <i class="fas fa-calendar-alt"></i>
+                  <span>12/06/2023</span>
+                </div>
+                <div class="task-time">
+                  <i class="fas fa-clock"></i>
+                  <span>Estimado: 25 horas</span>
+                </div>
+              </div>
+              
+              <div class="task-progress">
+                <div class="progress-info">
+                  <span>Progreso</span>
+                  <span>0%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 0%"></div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="task-footer">
+              <div class="task-actions">
+                <button class="action-btn edit-task" data-tooltip="Editar tarea">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button class="action-btn update-status" data-tooltip="Actualizar estado">
+                  <i class="fas fa-sync-alt"></i>
+                </button>
+                <button class="action-btn delete-task" data-tooltip="Eliminar tarea">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <!-- Modal para crear nueva tarea -->
+  <div class="modal" id="newTaskModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2><i class="fas fa-plus-circle"></i> Crear Nueva Tarea</h2>
+        <button class="close-modal" id="closeModal">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="newTaskForm">
+          <div class="form-group">
+            <label for="taskName">Nombre de la Tarea</label>
+            <input type="text" id="taskName" name="taskName" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="taskDescription">Descripción</label>
+            <textarea id="taskDescription" name="taskDescription" rows="3" required></textarea>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="projectSelect">Proyecto</label>
+              <select id="projectSelect" name="projectSelect" required>
+                <option value="">Seleccionar proyecto</option>
+                <option value="1">Sistema CRM</option>
+                <option value="2">App Delivery</option>
+                <option value="3">E-commerce</option>
+                <option value="4">Sitio Web Corporativo</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="assigneeSelect">Asignado a</label>
+              <select id="assigneeSelect" name="assigneeSelect">
+                <option value="">Autoasignar</option>
+                <option value="1">Ana López</option>
+                <option value="2">Carlos Ruiz</option>
+                <option value="3">María González</option>
+                <option value="4">Pedro Sánchez</option>
+                <option value="5">Juan Pérez</option>
+              </select>
+              <small class="form-text">Si no selecciona, se asignará automáticamente.</small>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="deadlineDate">Fecha Límite</label>
+              <input type="date" id="deadlineDate" name="deadlineDate" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="estimatedTime">Tiempo Estimado (horas)</label>
+              <input type="number" id="estimatedTime" name="estimatedTime" min="1" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="taskPriority">Prioridad</label>
+            <div class="priority-selector">
+              <label class="priority-option">
+                <input type="radio" name="taskPriority" value="baja">
+                <span class="priority-badge low">Baja</span>
+              </label>
+              <label class="priority-option">
+                <input type="radio" name="taskPriority" value="media" checked>
+                <span class="priority-badge medium">Media</span>
+              </label>
+              <label class="priority-option">
+                <input type="radio" name="taskPriority" value="alta">
+                <span class="priority-badge high">Alta</span>
+              </label>
+            </div>
+          </div>
+          
+          <div class="form-actions">
+            <button type="button" class="btn-cancel" id="cancelBtn">Cancelar</button>
+            <button type="submit" class="btn-save">
+              <i class="fas fa-save"></i> Guardar Tarea
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal para actualizar estado de tarea -->
+  <div class="modal" id="updateStatusModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2><i class="fas fa-sync-alt"></i> Actualizar Estado de Tarea</h2>
+        <button class="close-modal" id="closeUpdateModal">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="updateStatusForm">
+          <div class="form-group">
+            <label for="taskStatus">Estado de la Tarea</label>
+            <select id="taskStatus" name="taskStatus" required>
+              <option value="pendiente">Pendiente</option>
+              <option value="progreso">En Progreso</option>
+              <option value="completada">Completada</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="taskProgress">Progreso (%)</label>
+            <input type="range" id="taskProgress" name="taskProgress" min="0" max="100" value="0">
+            <div class="range-value">
+              <span id="progressValue">0%</span>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="timeSpent">Tiempo Dedicado (horas)</label>
+            <input type="number" id="timeSpent" name="timeSpent" min="0" step="0.5" value="0">
+            <small class="form-text">El sistema ajustará automáticamente el tiempo estimado restante.</small>
+          </div>
+          
+          <div class="form-group" id="completionNotes" style="display: none;">
+            <label for="completionComments">Comentarios de Finalización</label>
+            <textarea id="completionComments" name="completionComments" rows="3"></textarea>
+          </div>
+          
+          <div class="form-actions">
+            <button type="button" class="btn-cancel" id="cancelUpdateBtn">Cancelar</button>
+            <button type="submit" class="btn-save">
+              <i class="fas fa-save"></i> Guardar Cambios
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Funcionalidad para el modal de nueva tarea
+    const newTaskModal = document.getElementById('newTaskModal');
+    const openNewTaskBtn = document.getElementById('openNewTaskModal');
+    const closeModalBtn = document.getElementById('closeModal');
+    const cancelBtn = document.getElementById('cancelBtn');
+    
+    openNewTaskBtn.addEventListener('click', () => {
+      newTaskModal.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    });
+    
+    function closeNewTaskModal() {
+      newTaskModal.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+    
+    closeModalBtn.addEventListener('click', closeNewTaskModal);
+    cancelBtn.addEventListener('click', closeNewTaskModal);
+    
+    // Cerrar modal al hacer clic fuera del contenido
+    newTaskModal.addEventListener('click', (e) => {
+      if (e.target === newTaskModal) {
+        closeNewTaskModal();
+      }
+    });
+    
+    // Funcionalidad para el modal de actualizar estado
+    const updateStatusModal = document.getElementById('updateStatusModal');
+    const updateStatusBtns = document.querySelectorAll('.update-status');
+    const closeUpdateModalBtn = document.getElementById('closeUpdateModal');
+    const cancelUpdateBtn = document.getElementById('cancelUpdateBtn');
+    
+    updateStatusBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        updateStatusModal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+        
+        // Obtener el estado actual de la tarea y establecerlo en el formulario
+        const taskCard = btn.closest('.task-card');
+        const status = taskCard.getAttribute('data-status');
+        const progress = taskCard.querySelector('.progress-fill').style.width;
+        
+        document.getElementById('taskStatus').value = status;
+        document.getElementById('taskProgress').value = parseInt(progress);
+        document.getElementById('progressValue').textContent = progress;
+        
+        // Mostrar/ocultar campos según el estado
+        if (status === 'completada') {
+          document.getElementById('completionNotes').style.display = 'block';
+        } else {
+          document.getElementById('completionNotes').style.display = 'none';
+        }
+      });
+    });
+    
+    function closeUpdateStatusModal() {
+      updateStatusModal.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+    
+    closeUpdateModalBtn.addEventListener('click', closeUpdateStatusModal);
+    cancelUpdateBtn.addEventListener('click', closeUpdateStatusModal);
+    
+    // Cerrar modal al hacer clic fuera del contenido
+    updateStatusModal.addEventListener('click', (e) => {
+      if (e.target === updateStatusModal) {
+        closeUpdateStatusModal();
+      }
+    });
+    
+    // Actualizar valor del progreso en tiempo real
+    const progressRange = document.getElementById('taskProgress');
+    const progressValue = document.getElementById('progressValue');
+    
+    progressRange.addEventListener('input', () => {
+      progressValue.textContent = `${progressRange.value}%`;
+    });
+    
+    // Mostrar/ocultar campos de finalización según el estado seleccionado
+    document.getElementById('taskStatus').addEventListener('change', function() {
+      if (this.value === 'completada') {
+        document.getElementById('completionNotes').style.display = 'block';
+        document.getElementById('taskProgress').value = 100;
+        progressValue.textContent = '100%';
+      } else {
+        document.getElementById('completionNotes').style.display = 'none';
+      }
+    });
+    
+    // Funcionalidad para los filtros
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const taskCards = document.querySelectorAll('.task-card');
+    
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Quitar clase activa de todos los botones
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        
+        // Agregar clase activa al botón clickeado
+        button.classList.add('active');
+        
+        const filter = button.getAttribute('data-filter');
+        
+        // Mostrar/ocultar tareas según el filtro
+        taskCards.forEach(card => {
+          if (filter === 'todas') {
+            card.style.display = '';
+          } else {
+            const status = card.getAttribute('data-status');
+            card.style.display = (status === filter) ? '' : 'none';
+          }
+        });
+      });
+    });
+    
+    // Envío del formulario de nueva tarea
+    document.getElementById('newTaskForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Aquí iría la lógica para guardar la tarea
+      alert('Tarea guardada correctamente');
+      closeNewTaskModal();
+    });
+    
+    // Envío del formulario de actualización de estado
+    document.getElementById('updateStatusForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Aquí iría la lógica para actualizar el estado de la tarea
+      alert('Estado de tarea actualizado correctamente');
+      closeUpdateStatusModal();
+    });
+  </script>
+</body>
+</html>
