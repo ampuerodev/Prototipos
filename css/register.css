@@ -30,12 +30,40 @@
 
 .register-header h1 {
   font-size: 1.5rem;
-  color: var(--dark);
+  color: #000;
   margin: 0;
 }
 
 .register-form {
   padding: 1.5rem;
+}
+
+.register-form .form-group label {
+  color: #000;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.register-form input[type="text"],
+.register-form input[type="email"],
+.register-form input[type="password"] {
+  color: #000;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  width: 100%;
+  margin-bottom: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.register-form input[type="text"]:focus,
+.register-form input[type="email"]:focus,
+.register-form input[type="password"]:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
 }
 
 .btn-register {
@@ -70,6 +98,8 @@
   margin-bottom: 0;
   font-weight: normal;
   font-size: 0.9rem;
+  color: #000;
+  opacity: 0.9;
 }
 
 .password-toggle {
@@ -88,9 +118,10 @@
   padding: 1rem;
   text-align: center;
   font-size: 0.8rem;
-  color: #6c757d;
+  color: #000;
   background-color: var(--light);
   border-top: 1px solid var(--gray);
+  opacity: 0.8;
 }
 
 .form-links {
@@ -99,12 +130,16 @@
 }
 
 .form-links a {
-  color: var(--primary);
+  color: #000;
   font-weight: 500;
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
 }
 
 .form-links a:hover {
   text-decoration: underline;
+  opacity: 1;
+  color: #000;
 }
 
 @media (max-width: 576px) {

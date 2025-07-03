@@ -29,8 +29,8 @@
 
 .recover-header h1 {
   font-size: 1.5rem;
-  color: var(--dark);
-  margin: 0;
+  color: #000;
+  margin: 0 0 1rem 0;
 }
 
 .recover-form {
@@ -44,10 +44,11 @@
   padding: 1rem;
   border-radius: var(--radius);
   margin-bottom: 1.5rem;
+  color: #000;
 }
 
 .form-info i {
-  color: var(--primary);
+  color: #000;
   font-size: 1.2rem;
   margin-right: 0.75rem;
   margin-top: 0.2rem;
@@ -56,6 +57,9 @@
 .form-info p {
   margin: 0;
   font-size: 0.95rem;
+  line-height: 1.5;
+  color: #000;
+  font-weight: 500;
 }
 
 .btn-recover {
@@ -91,12 +95,13 @@
 }
 
 .recover-footer {
-  padding: 1rem 2rem;
+  padding: 1rem;
   text-align: center;
   font-size: 0.8rem;
-  color: #6c757d;
+  color: #000;
   background-color: var(--light);
   border-top: 1px solid var(--gray);
+  opacity: 0.8;
 }
 
 @media (max-width: 576px) {
